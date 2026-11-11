@@ -40,6 +40,15 @@ Source: the "Pawfect Match – Layout Prototype" design canvas (https://claude.a
 - Files are UTF-8 with LF line endings (`.editorconfig`, `.gitattributes`).
 - `/android/` (export templates) and `/build/` (export output) are git-ignored.
 
+## Git workflow
+
+- `main` — stable versions only. Never commit to it directly; it only receives merges from `develop`.
+- `develop` — where finished features collect. Never change files directly on `develop`; it only receives merges from feature branches.
+- `feature/<short-name>` — one branch per task, created from `develop` and merged back into `develop` when done.
+- Every time work starts, first create a new feature branch from `develop`, before changing any files.
+- Always get the user's explicit approval before any merge (feature → `develop`, `develop` → `main`).
+- No remote (GitHub) is set up yet.
+
 ## Running
 
 - Editor: press F5 to run the main scene (`main.tscn`, currently a placeholder).
