@@ -38,7 +38,7 @@ Source: the "Pawfect Match – Layout Prototype" design canvas (https://claude.a
 ## Conventions
 
 - Files are UTF-8 with LF line endings (`.editorconfig`, `.gitattributes`).
-- `/android/` (export templates) and `/build/` (export output) are git-ignored.
+- `/android/` (export templates) and everything in `/build/` (export output) are git-ignored, except `build/.gdignore`.
 
 ## Git workflow
 
@@ -57,5 +57,5 @@ This is a team project. `main` and `develop` are both protected by GitHub rulese
 
 - Editor: press F5 to run the main scene (`main.tscn`, currently a placeholder).
 - Browser: the "Web" preset in `export_presets.cfg` is runnable — use the Remote Debug button (top right, after Stop) to export and open the game in a browser. Thread Support is off so it works on hosts without cross-origin isolation headers.
-- Export output goes to `build/web/` (generated, git-ignored). `build/.gdignore` keeps Godot from importing exported files.
+- Export output goes to `build/web/` (generated, git-ignored). `build/.gdignore` is committed and keeps Godot from importing exported files.
 - No build scripts or test framework yet.
