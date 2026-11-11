@@ -42,12 +42,15 @@ Source: the "Pawfect Match – Layout Prototype" design canvas (https://claude.a
 
 ## Git workflow
 
-- `main` — stable versions only. Never commit to it directly; it only receives merges from `develop`.
-- `main` is protected on GitHub: direct pushes are refused. Merge `develop` → `main` only through a pull request on GitHub (base `main`, compare `develop`).
-- `develop` — where finished features collect. Never change files directly on `develop`; it only receives merges from feature branches.
-- `feature/<short-name>` — one branch per task, created from `develop` and merged back into `develop` when done.
+This is a team project. `main` and `develop` are both protected by GitHub rulesets: direct pushes, force pushes and deletion are refused, so all changes reach them through pull requests (PRs). Review and comments happen on the PR.
+
+- `main` — stable versions only. Changes arrive only via a PR from `develop` (base `main`, compare `develop`), which needs 1 approval from a teammate with write access.
+- `develop` — where finished features collect. Never change files directly on `develop`. Changes arrive only via PRs from feature branches (no approval required).
+- `feature/<short-name>` — one branch per task, created from an up-to-date `develop` (`git pull` first).
 - Every time work starts, first create a new feature branch from `develop`, before changing any files.
-- Always get the user's explicit approval before any merge (feature → `develop`, `develop` → `main`).
+- Flow: feature branch → review the diff with the user → commit → push the branch → open a PR into `develop` (Claude uses `gh pr create --base develop`) → merge on GitHub → `git pull` on `develop` → delete the feature branch.
+- Get the user's explicit approval before each commit, push, PR, merge and branch deletion.
+- Claude may merge or close a PR (`gh pr merge` / `gh pr close`) only after the user's explicit approval for that specific PR.
 - Remote: `origin` → https://github.com/aruorg/pawfect-match-game (GitHub). `main` and `develop` track their `origin` counterparts.
 
 ## Running
