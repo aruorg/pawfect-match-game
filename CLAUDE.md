@@ -47,7 +47,7 @@ Source: the "Pawfect Match – Layout Prototype" design canvas (https://claude.a
 - `feature/<short-name>` — one branch per task, created from `develop` and merged back into `develop` when done.
 - Every time work starts, first create a new feature branch from `develop`, before changing any files.
 - Always get the user's explicit approval before any merge (feature → `develop`, `develop` → `main`).
-- No remote (GitHub) is set up yet.
+- Remote: `origin` → https://github.com/aruorg/pawfect-match-game (GitHub). `main` and `develop` track their `origin` counterparts.
 
 ## Running
 
