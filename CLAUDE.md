@@ -43,6 +43,7 @@ Source: the "Pawfect Match – Layout Prototype" design canvas (https://claude.a
 ## Git workflow
 
 - `main` — stable versions only. Never commit to it directly; it only receives merges from `develop`.
+- `main` is protected on GitHub: direct pushes are refused. Merge `develop` → `main` only through a pull request on GitHub (base `main`, compare `develop`).
 - `develop` — where finished features collect. Never change files directly on `develop`; it only receives merges from feature branches.
 - `feature/<short-name>` — one branch per task, created from `develop` and merged back into `develop` when done.
 - Every time work starts, first create a new feature branch from `develop`, before changing any files.
