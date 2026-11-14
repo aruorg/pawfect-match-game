@@ -20,7 +20,7 @@ const CAT_POSITIONS := {
 
 func _ready() -> void:
 	treats_label.text = "Treats: %d" % GameState.treats
-	xp_label.text = "XP: %d" % GameState.xp
+	xp_label.text = "Level %d (XP %d)" % [GameState.get_level(), GameState.xp]
 
 	# Go through the cat list and put each cat into the studio.
 	for cat in CatData.CATS:
