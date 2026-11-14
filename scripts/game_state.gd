@@ -13,6 +13,11 @@ var cat_b: Dictionary = {}
 ## Result of the last date: "Great", "Okay" or "Failed". Empty before any date.
 var last_outcome: String = ""
 
+## How the last date ended: each cat's mood (0 to 100) and the player's score.
+var mood_a: int = 0
+var mood_b: int = 0
+var score: int = 0
+
 ## Rewards the player has collected so far.
 var treats: int = 0
 var xp: int = 0
