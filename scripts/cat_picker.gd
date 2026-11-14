@@ -51,9 +51,30 @@ func _refresh() -> void:
 	_show_slot(slot_a_picture, slot_a_label, 0)
 	_show_slot(slot_b_picture, slot_b_label, 1)
 
-	var pair_ready := selected_cats.size() == 2
-	check_match_button.disabled = not pair_ready
-	check_match_button.text = "Check match" if pair_ready else "Pick 2 cats"
+	_update_check_match_button()
+
+
+## Godot calls _process many times per second. Updating the button here
+## keeps the break countdown ticking while the player looks at the screen.
+func _process(_delta: float) -> void:
+	_update_check_match_button()
+
+
+## Decides whether "Check match" can be pressed and what it says.
+func _update_check_match_button() -> void:
+	if selected_cats.size() < 2:
+		check_match_button.disabled = true
+		check_match_button.text = "Pick 2 cats"
+		return
+
+	# Two cats are picked: are they on a break after a failed date?
+	var seconds_left: int = GameState.cooldown_seconds_left(selected_cats[0], selected_cats[1])
+	if seconds_left > 0:
+		check_match_button.disabled = true
+		check_match_button.text = "Need a break %s" % GameState.format_time(seconds_left)
+	else:
+		check_match_button.disabled = false
+		check_match_button.text = "Check match"
 
 
 ## Shows one picked cat in a tray slot, or "Empty" if that slot has no cat.

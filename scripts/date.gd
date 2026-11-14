@@ -15,8 +15,6 @@ const MOOD_PER_HEART := 10
 ## How much a cat's mood changes after a question about that cat.
 const MOOD_RIGHT := 20
 const MOOD_WRONG := -15
-## A cat "loved it" if its mood is at least this high when the date ends.
-const LOVED_IT_MOOD := 60
 
 ## Button colours after answering: the right answer and a wrong pick.
 const RIGHT_COLOR := Color(0.25, 0.65, 0.38)
@@ -243,8 +241,8 @@ func _on_profile_close_button_pressed() -> void:
 
 ## Works out how the date went and opens the result screen.
 func _end_date() -> void:
-	var a_loved_it: bool = mood_a >= LOVED_IT_MOOD
-	var b_loved_it: bool = mood_b >= LOVED_IT_MOOD
+	var a_loved_it: bool = mood_a >= GameState.LOVED_IT_MOOD
+	var b_loved_it: bool = mood_b >= GameState.LOVED_IT_MOOD
 
 	var outcome: String = "Failed"
 	if a_loved_it and b_loved_it:
