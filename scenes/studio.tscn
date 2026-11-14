@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://scripts/studio.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/studio/studio_background.png" id="2_background"]
 
 [node name="Studio" type="Control"]
 layout_mode = 3
@@ -11,22 +12,40 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_script")
 
-[node name="TitleLabel" type="Label" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 60.0
-offset_top = 60.0
-offset_right = 1000.0
-offset_bottom = 140.0
-theme_override_font_sizes/font_size = 48
-text = "Studio (stub)"
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_background")
 
-[node name="NextButton" type="Button" parent="."]
+[node name="Cats" type="Control" parent="."]
 layout_mode = 0
-offset_left = 60.0
-offset_top = 180.0
-offset_right = 520.0
-offset_bottom = 260.0
+
+[node name="TreatsLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 36.0
+offset_right = 342.0
+offset_bottom = 84.0
 theme_override_font_sizes/font_size = 32
-text = "Next: Cat picker"
+text = "Treats: 0"
 
-[connection signal="pressed" from="NextButton" to="." method="_on_next_button_pressed"]
+[node name="XpLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 90.0
+offset_right = 342.0
+offset_bottom = 138.0
+theme_override_font_sizes/font_size = 32
+text = "XP: 0"
+
+[node name="CatsButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 843.0
+offset_right = 285.0
+offset_bottom = 1053.0
+theme_override_font_sizes/font_size = 36
+text = "CATS"
+
+[connection signal="pressed" from="CatsButton" to="." method="_open_cat_picker"]
