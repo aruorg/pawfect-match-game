@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=4 format=3]
 
 [ext_resource type="Script" path="res://scripts/match_check.gd" id="1_script"]
+[ext_resource type="Theme" path="res://assets/ui/lofi_theme.tres" id="2_theme"]
+[ext_resource type="PackedScene" path="res://scenes/cat_card.tscn" id="3_card"]
 
 [node name="MatchCheck" type="Control"]
 layout_mode = 3
@@ -9,24 +11,130 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_theme")
 script = ExtResource("1_script")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.141, 0.071, 0.247, 1)
 
 [node name="TitleLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 60.0
-offset_top = 60.0
-offset_right = 1000.0
-offset_bottom = 140.0
-theme_override_font_sizes/font_size = 48
-text = "Match check (stub)"
+offset_top = 36.0
+offset_right = 1920.0
+offset_bottom = 120.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 60
+text = "MATCH CHECK"
+horizontal_alignment = 1
 
-[node name="NextButton" type="Button" parent="."]
+[node name="CardA" parent="." instance=ExtResource("3_card")]
 layout_mode = 0
-offset_left = 60.0
-offset_top = 180.0
-offset_right = 520.0
-offset_bottom = 260.0
-theme_override_font_sizes/font_size = 32
-text = "Next: Date"
+offset_left = 120.0
+offset_top = 150.0
+offset_right = 570.0
+offset_bottom = 780.0
 
-[connection signal="pressed" from="NextButton" to="." method="_on_next_button_pressed"]
+[node name="CardB" parent="." instance=ExtResource("3_card")]
+layout_mode = 0
+offset_left = 1350.0
+offset_top = 150.0
+offset_right = 1800.0
+offset_bottom = 780.0
+
+[node name="InfoPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 630.0
+offset_top = 150.0
+offset_right = 1290.0
+offset_bottom = 780.0
+
+[node name="Rows" type="VBoxContainer" parent="InfoPanel"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 630.0
+offset_bottom = 600.0
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="CompatibilityTitle" type="Label" parent="InfoPanel/Rows"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.478, 0.122, 0.322, 1)
+theme_override_font_sizes/font_size = 22
+text = "COMPATIBILITY"
+horizontal_alignment = 1
+
+[node name="Hearts" type="HBoxContainer" parent="InfoPanel/Rows"]
+custom_minimum_size = Vector2(0, 78)
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="SharedTitle" type="Label" parent="InfoPanel/Rows"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.478, 0.122, 0.322, 1)
+theme_override_font_sizes/font_size = 22
+text = "THEY SHARE"
+horizontal_alignment = 1
+
+[node name="SharedLabel" type="Label" parent="InfoPanel/Rows"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Shared things"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ClashTitle" type="Label" parent="InfoPanel/Rows"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.478, 0.122, 0.322, 1)
+theme_override_font_sizes/font_size = 22
+text = "MIGHT CLASH"
+horizontal_alignment = 1
+
+[node name="ClashLabel" type="Label" parent="InfoPanel/Rows"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Clashes"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="WillingnessTitle" type="Label" parent="InfoPanel/Rows"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.478, 0.122, 0.322, 1)
+theme_override_font_sizes/font_size = 22
+text = "WILLINGNESS"
+horizontal_alignment = 1
+
+[node name="WillingnessLabel" type="Label" parent="InfoPanel/Rows"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Cat 0%, Cat 0%"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 900.0
+offset_right = 420.0
+offset_bottom = 996.0
+theme_override_font_sizes/font_size = 30
+text = "Back"
+
+[node name="StartDateButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1410.0
+offset_top = 900.0
+offset_right = 1800.0
+offset_bottom = 996.0
+theme_override_font_sizes/font_size = 30
+text = "Start date 1"
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="StartDateButton" to="." method="_on_start_date_button_pressed"]

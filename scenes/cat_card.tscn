@@ -40,6 +40,12 @@ theme_override_font_sizes/font_size = 20
 text = "Trait, Trait, Trait"
 autowrap_mode = 3
 
+[node name="LikesLabel" type="Label" parent="Margin/Rows"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Likes: thing, thing"
+autowrap_mode = 3
+
 [node name="WillingnessLabel" type="Label" parent="Margin/Rows"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
