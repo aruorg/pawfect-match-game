@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://dhqphomm53bmw"]
 
+[ext_resource type="Script" uid="uid://ca1ht1gmche3s" path="res://scripts/main.gd" id="1_main"]
+
 [node name="Node2D" type="Node2D" unique_id=1703149094]
+script = ExtResource("1_main")
 
 [node name="Label" type="Label" parent="." unique_id=1128634746]
 offset_left = 352.0
