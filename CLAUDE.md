@@ -8,7 +8,7 @@ Pawfect Match is a Godot 4.x cat-matchmaking game. A lofi prototype of the core 
 
 - GDScript only — do not use C#.
 - Renderer: Compatibility (GL Compatibility, also for mobile); target platform is a web export.
-- Base resolution 1920x1080, stretch mode `canvas_items` (aspect `expand`).
+- Base resolution 1920x1080, stretch mode `canvas_items` (aspect `keep`): the game keeps its 16:9 shape and is centred, with black bars in wider or taller windows. Screens are laid out for exactly 1920x1080.
 - Physics: Jolt Physics (3D).
 
 ## Game rules
