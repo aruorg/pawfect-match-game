@@ -93,13 +93,28 @@ This is a team project. `main` and `develop` are both protected by GitHub rulese
 - Flow: feature branch → review the diff with the user → commit → push the branch → open a PR into `develop` (Claude uses `gh pr create --base develop`) → merge on GitHub → `git pull` on `develop` → delete the feature branch.
 - Get the user's explicit approval before each commit, push, PR, merge and branch deletion.
 - Claude may merge or close a PR (`gh pr merge` / `gh pr close`) only after the user's explicit approval for that specific PR.
+- `gh-pages` holds only the exported web version (see "Publishing the web version"). It is written only when publishing, is never merged into `develop` or `main`, and is not a place to work.
 - Remote: `origin` → https://github.com/aruorg/pawfect-match-game (GitHub). `main` and `develop` track their `origin` counterparts.
 
 ## Running
 
 - Editor: press F5 to run the main scene (`main.tscn`, which opens the studio). F6 runs the scene that is open in the editor.
 - Nothing is saved between sessions: treats, XP and cooldowns reset when the game closes.
-- The prototype has been tested in the editor only; the web export has not been tested with it yet.
+- The prototype has been tested in the editor and in the browser, and is published (see "Publishing the web version").
 - Browser: the "Web" preset in `export_presets.cfg` is runnable — use the Remote Debug button (top right, after Stop) to export and open the game in a browser. Thread Support is off so it works on hosts without cross-origin isolation headers.
 - Export output goes to `build/web/` (generated, git-ignored). `build/.gdignore` is committed and keeps Godot from importing exported files.
 - No build scripts or test framework yet.
+
+## Publishing the web version
+
+The playable game is at https://aruorg.github.io/pawfect-match-game/. GitHub Pages serves it from the `gh-pages` branch, which holds only the exported files plus an empty `.nojekyll` file (no source code). Anyone with the link can play.
+
+The site does not update by itself when `develop` changes. To publish a new version:
+
+1. Export the "Web" preset as a release build to `build/web/index.html`: in the editor (Project → Export → Web → Export Project, with "Export With Debug" unticked), or from the command line with `<godot executable> --headless --path . --export-release "Web" build/web/index.html`.
+2. Check out `gh-pages` in a temporary worktree outside the project folder (`git worktree add <temp folder> gh-pages`), so the working folder stays on its branch.
+3. Replace the files there with the contents of `build/web/`, keeping `.nojekyll`.
+4. Commit, push `gh-pages`, and remove the worktree (`git worktree remove <temp folder>`).
+5. Open the link and check that the game loads. A new version takes about a minute to appear.
+
+Get the user's explicit approval before each publish, as for a push or a merge.
